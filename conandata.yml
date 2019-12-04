@@ -1,0 +1,4 @@
+patches:
+  5.5.2:
+    - patch_file: "patches/paraview-5.5.2_incomplete_access_qheaderview.patch"
+      base_path: "ParaView-v5.5.2"
