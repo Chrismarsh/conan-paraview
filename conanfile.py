@@ -51,7 +51,6 @@ class ProjConan(ConanFile):
         self.copy("*", dst="bin", src="bin")
         self.copy("*", dst="app", src="app")
         self.copy("*.dylib", dst="lib", src="lib")
-        # self.copy("*.lib", dst="lib", keep_path=False)
-        # self.copy("*.a", dst="lib", keep_path=False)
+        self.copy("*.so", dst="lib", keep_path=False)
 
 
