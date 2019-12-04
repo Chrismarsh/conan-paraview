@@ -34,7 +34,7 @@ class ProjConan(ConanFile):
         cmake = CMake(self)
         
         # if self.settings.os == "Macos":
-        cmake.definitions["MACOSX_APP_INSTALL_PREFIX"]="app"
+        cmake.definitions["MACOSX_APP_INSTALL_PREFIX"]="bin"
 
         cmake.configure(source_folder="Paraview-v%s" % self.version)
         return cmake
@@ -43,13 +43,16 @@ class ProjConan(ConanFile):
         cmake = self.configure_cmake()
         cmake.build()
         
+    def deploy(self):
+        self.copy("./bin/*")
+        self.copy("./lib/*.dylib")
+        self.copy("./lib/*.so")
         
 
     def package(self):
         cmake = self.configure_cmake()
         cmake.install()
         self.copy("*", dst="bin", src="bin")
-        self.copy("*", dst="app", src="app")
         self.copy("*.dylib", dst="lib", src="lib")
         self.copy("*.so", dst="lib", keep_path=False)
 
