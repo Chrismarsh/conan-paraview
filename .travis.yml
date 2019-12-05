@@ -14,7 +14,7 @@ install:
   - conan profile update settings.compiler.libcxx=libstdc++11 default
 script:
 # Download dependencies and build project
-  - conan install ../ -if=. --build missing
+  - conan install . -if=. --build missing
 # Call your build system
   - cmake . -G "Unix Makefiles"
   - cmake --build .
