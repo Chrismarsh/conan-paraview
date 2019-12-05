@@ -13,12 +13,12 @@ class ProjConan(ConanFile):
     exports_sources = ['patches/*']
 
 
-
     def requirements(self):
         self.requires("qt/5.13.2@bincrafters/stable")
 
         self.options["qt"].qttools=True
         self.options["qt"].qtxmlpatterns=True
+        self.options["qt"].qtx11extras=True
 
     def source(self):
 
