@@ -14,8 +14,8 @@ install:
   - conan profile update settings.compiler.libcxx=libstdc++11 default
 script:
 # Download dependencies and build project
-  - conan install . -if=. --build missing
-# Call your build system
-  - cmake . -G "Unix Makefiles"
-  - cmake --build .
+  - conan export . paraview/5.5.2@CHM/dev
+  - conan install . CHM/dev --build missing
+  - conan install . -if=./test_package/paraview -g deploy
+  - conan test test_package paraview/5.5.2@CHM/dev
 
