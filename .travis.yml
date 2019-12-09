@@ -15,7 +15,6 @@ install:
 script:
 # Download dependencies and build project
   - conan export . paraview/5.5.2@CHM/dev
-  - conan install . CHM/dev --build missing
-  - conan install . -if=./test_package/paraview -g deploy
-  - conan test test_package paraview/5.5.2@CHM/dev
+  - conan install . --build missing
+
 
