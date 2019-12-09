@@ -13,12 +13,12 @@ class ProjConan(ConanFile):
     exports_sources = ['patches/*']
 
 
-
     def requirements(self):
         self.requires("qt/5.13.2@bincrafters/stable")
 
         self.options["qt"].qttools=True
         self.options["qt"].qtxmlpatterns=True
+        self.options["qt"].qtx11extras=True
 
     def source(self):
 
@@ -36,7 +36,7 @@ class ProjConan(ConanFile):
         # if self.settings.os == "Macos":
         cmake.definitions["MACOSX_APP_INSTALL_PREFIX"]="bin"
 
-        cmake.configure(source_folder="Paraview-v%s" % self.version)
+        cmake.configure(source_folder="ParaView-v%s" % self.version)
         return cmake
 
     def build(self):
