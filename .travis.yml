@@ -1,13 +1,13 @@
 os: 
   - linux
     dist: bionic #18.04lTS
-  - osx
+  # - osx
 language: python
 python: "3.7"
 
 compiler:
   - gcc
-  - clang
+  # - clang
 install:
 # Install conan
   - pip install conan
@@ -20,5 +20,5 @@ script:
 # Download dependencies and build project
   - conan export . paraview/5.5.2@CHM/dev
   - conan install . --build missing
-
+  - conan test .
 
