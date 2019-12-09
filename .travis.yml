@@ -1,9 +1,13 @@
-os: linux
+os: 
+  - linux
+    dist: bionic #18.04lTS
+  - osx
 language: python
 python: "3.7"
-dist: xenial
+
 compiler:
   - gcc
+  - clang
 install:
 # Install conan
   - pip install conan
