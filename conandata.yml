@@ -1,4 +1,11 @@
 patches:
-  5.5.2:
+  "5.5.2":
     - patch_file: "patches/paraview-5.5.2_incomplete_access_qheaderview.patch"
       base_path: "ParaView-v5.5.2"
+sources:
+  "5.5.2":
+    url: "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.5&type=source&os=Sources&downloadFile=ParaView-v5.5.2.tar.xz"
+  "5.7.0":
+    url: "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.7&type=source&os=Sources&downloadFile=ParaView-v5.7.0.tar.xz"
+  "5.8.0":
+    url: "https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.8&type=source&os=Sources&downloadFile=ParaView-v5.8.0.tar.xz"

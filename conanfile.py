@@ -6,12 +6,10 @@ class ProjConan(ConanFile):
     name = "paraview"
     description = """ParaView is an open-source, multi-platform data analysis and visualization application."""
     version = "5.5.2"
-    generators = "cmake"
     settings = "os"
     url="https://www.paraview.org/"
     license="GPL"
     exports_sources = ['patches/*']
-
 
 
     def requirements(self):
@@ -19,14 +17,14 @@ class ProjConan(ConanFile):
 
         self.options["qt"].qttools=True
         self.options["qt"].qtxmlpatterns=True
+        self.options["qt"].qtsvg=True
+
 
     def source(self):
 
-        zip_name ="ParaView-v5.5.2.zip"
-        download("https://www.paraview.org/paraview-downloads/download.php?submit=Download&version=v5.5&type=source&os=Sources&downloadFile=%s"%zip_name,zip_name)
-        unzip(zip_name)
-        os.unlink(zip_name)
+        filename = 'ParaView-v%s.tar.xz' % self.version
 
+        tools.get(**self.conan_data["sources"][self.version],filename=filename)
         for patch in self.conan_data["patches"][self.version]:
             tools.patch(**patch)
 
@@ -45,8 +43,6 @@ class ProjConan(ConanFile):
         
     def deploy(self):
         self.copy("./bin/*")
-        self.copy("./lib/*.dylib")
-        self.copy("./lib/*.so")
         
 
     def package(self):
@@ -56,4 +52,6 @@ class ProjConan(ConanFile):
         self.copy("*.dylib", dst="lib", src="lib")
         self.copy("*.so", dst="lib", keep_path=False)
 
+    def package_info(self):
+        self.cpp_info.name = "PV" #don't clash with the built in cmake FindParaview if we need it later
 
